@@ -1,0 +1,127 @@
+/* ─────────────────────────────────────────
+   toast-ios.css  –  iOS-style toast library
+   No framework dependencies.
+───────────────────────────────────────── */
+
+#ios-toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 99999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    pointer-events: none;
+}
+
+.ios-toast {
+    pointer-events: all;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: 18px;
+    min-width: 280px;
+    max-width: 360px;
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), 0 1.5px 4px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    opacity: 0;
+    transform: translateY(-18px) scale(0.97);
+    transition: opacity 0.32s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ios-toast.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.ios-toast.hide {
+    opacity: 0;
+    transform: translateY(-14px) scale(0.96);
+}
+
+/* ── Icon bubble ── */
+.ios-toast-icon {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ios-toast-icon svg { width: 18px; height: 18px; }
+
+.ios-toast.success .ios-toast-icon { background: #dcfce7; color: #16a34a; }
+.ios-toast.error   .ios-toast-icon { background: #fee2e2; color: #dc2626; }
+.ios-toast.warning .ios-toast-icon { background: #fef9c3; color: #ca8a04; }
+.ios-toast.info    .ios-toast-icon { background: #dbeafe; color: #2563eb; }
+
+/* ── Body ── */
+.ios-toast-body { flex: 1; }
+
+.ios-toast-title {
+    font-size: 13px;
+    font-weight: 700;
+    margin: 0 0 2px;
+    color: #1c1c1e;
+    letter-spacing: -0.1px;
+}
+
+.ios-toast.success .ios-toast-title { color: #14532d; }
+.ios-toast.error   .ios-toast-title { color: #7f1d1d; }
+.ios-toast.warning .ios-toast-title { color: #713f12; }
+.ios-toast.info    .ios-toast-title { color: #1e3a5f; }
+
+.ios-toast-msg {
+    font-size: 12px;
+    font-weight: 500;
+    color: #3c3c43;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* ── Close button ── */
+.ios-toast-close {
+    background: none;
+    border: none;
+    padding: 4px;
+    cursor: pointer;
+    color: #aeaeb2;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s, color 0.15s;
+    flex-shrink: 0;
+}
+
+.ios-toast-close:hover { background: rgba(0, 0, 0, 0.06); color: #3c3c43; }
+.ios-toast-close svg   { width: 14px; height: 14px; }
+
+/* ── Progress bar ── */
+.ios-toast-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    border-radius: 0 0 18px 18px;
+    animation: ios-toast-progress var(--toast-duration, 4s) linear forwards;
+}
+
+.ios-toast.success .ios-toast-progress { background: #16a34a; }
+.ios-toast.error   .ios-toast-progress { background: #dc2626; }
+.ios-toast.warning .ios-toast-progress { background: #ca8a04; }
+.ios-toast.info    .ios-toast-progress { background: #2563eb; }
+
+@keyframes ios-toast-progress {
+    from { width: 100%; }
+    to   { width: 0%;   }
+}
