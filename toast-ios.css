@@ -137,35 +137,7 @@
     to   { width: 0%;   }
 }
 
-/* ─────────────────────────────────────────
-   MODO OSCURO (Dark Mode)
-   Se activa automáticamente por preferencias del sistema
-   o añadiendo la clase 'dark-theme' al <body> o html.
-───────────────────────────────────────── */
-@media (prefers-color-scheme: dark) {
-    .ios-toast:not(.light-theme) {
-        background: rgba(30, 30, 30, 0.72);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 1.5px 4px rgba(0, 0, 0, 0.2);
-    }
-    
-    .ios-toast:not(.light-theme) .ios-toast-title { color: #f2f2f7; }
-    .ios-toast:not(.light-theme) .ios-toast-msg { color: #ebebf5; }
-    .ios-toast:not(.light-theme) .ios-toast-close { color: #8e8e93; }
-    .ios-toast:not(.light-theme) .ios-toast-close:hover { background: rgba(255, 255, 255, 0.1); color: #f2f2f7; }
-    
-    /* Ajustes sutiles para fondos de iconos en modo oscuro */
-    .ios-toast:not(.light-theme).success .ios-toast-icon { background: rgba(22, 163, 74, 0.2); color: #4ade80; }
-    .ios-toast:not(.light-theme).error .ios-toast-icon { background: rgba(220, 38, 38, 0.2); color: #f87171; }
-    .ios-toast:not(.light-theme).warning .ios-toast-icon { background: rgba(202, 138, 4, 0.2); color: #facc15; }
-    .ios-toast:not(.light-theme).info .ios-toast-icon { background: rgba(37, 99, 235, 0.2); color: #60a5fa; }
 
-    /* Ajustes sutiles para los títulos en modo oscuro */
-    .ios-toast:not(.light-theme).success .ios-toast-title { color: #4ade80; }
-    .ios-toast:not(.light-theme).error .ios-toast-title { color: #f87171; }
-    .ios-toast:not(.light-theme).warning .ios-toast-title { color: #facc15; }
-    .ios-toast:not(.light-theme).info .ios-toast-title { color: #60a5fa; }
-}
 
 /* ─────────────────────────────────────────
    MODAL DE CONFIRMACIÓN (showConfirm)
@@ -252,28 +224,34 @@
 
 /* ── Botones (Apple Style) ── */
 .ios-modal-buttons {
-    display: flex;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex !important;
+    border-top: 1px solid rgba(0, 0, 0, 0.1) !important;
 }
 
 .ios-modal-btn {
-    flex: 1;
-    background: transparent;
-    border: none;
-    padding: 12px 10px;
-    font-size: 17px;
-    cursor: pointer;
-    transition: background 0.2s;
-    font-family: inherit;
+    flex: 1 !important;
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 12px 10px !important;
+    font-size: 17px !important;
+    cursor: pointer !important;
+    transition: background 0.2s !important;
+    font-family: inherit !important;
+    display: block !important;
+    text-align: center !important;
+    width: auto !important;
 }
 
-.ios-modal-btn:hover { background: rgba(0, 0, 0, 0.05); }
-.ios-modal-btn:active { background: rgba(0, 0, 0, 0.1); }
+.ios-modal-btn:hover { background: rgba(0, 0, 0, 0.05) !important; }
+.ios-modal-btn:active { background: rgba(0, 0, 0, 0.1) !important; }
 
 .ios-modal-cancel {
-    font-weight: 400;
-    color: #007aff; /* Azul clásico iOS */
-    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    font-weight: 400 !important;
+    color: #007aff !important; /* Azul clásico iOS */
+    border-right: 1px solid rgba(0, 0, 0, 0.1) !important;
 }
 
 .ios-modal-confirm {
@@ -281,37 +259,11 @@
 }
 
 /* Colores para el botón de confirmar según tipo */
-.ios-modal-confirm.ios-modal-success { color: #34c759; }
-.ios-modal-confirm.ios-modal-error   { color: #ff3b30; }
-.ios-modal-confirm.ios-modal-danger  { color: #ff3b30; }
-.ios-modal-confirm.ios-modal-warning { color: #ff9500; }
-.ios-modal-confirm.ios-modal-info    { color: #007aff; }
-
-/* ─────────────────────────────────────────
-   MODO OSCURO (Dark Mode para el Modal)
-───────────────────────────────────────── */
-@media (prefers-color-scheme: dark) {
-    .ios-modal:not(.light-theme) {
-        background: rgba(30, 30, 30, 0.75);
-    }
-    .ios-modal:not(.light-theme) .ios-modal-title { color: #fff; }
-    .ios-modal:not(.light-theme) .ios-modal-msg { color: #ebebf5; }
-    .ios-modal:not(.light-theme) .ios-modal-buttons { border-top-color: rgba(255, 255, 255, 0.15); }
-    .ios-modal:not(.light-theme) .ios-modal-cancel { border-right-color: rgba(255, 255, 255, 0.15); color: #0a84ff; }
-    
-    .ios-modal:not(.light-theme) .ios-modal-btn:hover { background: rgba(255, 255, 255, 0.05); }
-    .ios-modal:not(.light-theme) .ios-modal-btn:active { background: rgba(255, 255, 255, 0.1); }
-}
-
-.dark-theme .ios-modal {
-    background: rgba(30, 30, 30, 0.75);
-}
-.dark-theme .ios-modal .ios-modal-title { color: #fff; }
-.dark-theme .ios-modal .ios-modal-msg { color: #ebebf5; }
-.dark-theme .ios-modal .ios-modal-buttons { border-top-color: rgba(255, 255, 255, 0.15); }
-.dark-theme .ios-modal .ios-modal-cancel { border-right-color: rgba(255, 255, 255, 0.15); color: #0a84ff; }
-.dark-theme .ios-modal .ios-modal-btn:hover { background: rgba(255, 255, 255, 0.05); }
-.dark-theme .ios-modal .ios-modal-btn:active { background: rgba(255, 255, 255, 0.1); }
+.ios-modal-confirm.ios-modal-success { color: #34c759 !important; }
+.ios-modal-confirm.ios-modal-error   { color: #ff3b30 !important; }
+.ios-modal-confirm.ios-modal-danger  { color: #ff3b30 !important; }
+.ios-modal-confirm.ios-modal-warning { color: #ff9500 !important; }
+.ios-modal-confirm.ios-modal-info    { color: #007aff !important; }
 
 /* ─────────────────────────────────────────
    MODO RESPONSIVO (Móviles)
@@ -330,24 +282,4 @@
     }
 }
 
-/* Modo oscuro forzado mediante clase */
-.dark-theme .ios-toast {
-    background: rgba(30, 30, 30, 0.72);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 1.5px 4px rgba(0, 0, 0, 0.2);
-}
 
-.dark-theme .ios-toast .ios-toast-title { color: #f2f2f7; }
-.dark-theme .ios-toast .ios-toast-msg { color: #ebebf5; }
-.dark-theme .ios-toast .ios-toast-close { color: #8e8e93; }
-.dark-theme .ios-toast .ios-toast-close:hover { background: rgba(255, 255, 255, 0.1); color: #f2f2f7; }
-
-.dark-theme .ios-toast.success .ios-toast-icon { background: rgba(22, 163, 74, 0.2); color: #4ade80; }
-.dark-theme .ios-toast.error .ios-toast-icon { background: rgba(220, 38, 38, 0.2); color: #f87171; }
-.dark-theme .ios-toast.warning .ios-toast-icon { background: rgba(202, 138, 4, 0.2); color: #facc15; }
-.dark-theme .ios-toast.info .ios-toast-icon { background: rgba(37, 99, 235, 0.2); color: #60a5fa; }
-
-.dark-theme .ios-toast.success .ios-toast-title { color: #4ade80; }
-.dark-theme .ios-toast.error .ios-toast-title { color: #f87171; }
-.dark-theme .ios-toast.warning .ios-toast-title { color: #facc15; }
-.dark-theme .ios-toast.info .ios-toast-title { color: #60a5fa; }
