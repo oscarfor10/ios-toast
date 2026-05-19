@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iOS Toast Examples</title>
+    
+    <!-- Incluir CSS de iOS Toast -->
+    <link rel="stylesheet" href="../toast-ios.css">
+    
+    <style>
+        :root {
+            --bg-color: #f2f2f7;
+            --text-color: #1c1c1e;
+            --card-bg: #ffffff;
+            --border-color: #e5e5ea;
+        }
+
+        .dark-theme {
+            --bg-color: #000000;
+            --text-color: #f2f2f7;
+            --card-bg: #1c1c1e;
+            --border-color: #38383a;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        p.subtitle {
+            text-align: center;
+            color: #8e8e93;
+            margin-bottom: 40px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        button {
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            padding: 14px 20px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.1s, background-color 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        button:active {
+            transform: scale(0.96);
+        }
+
+        /* Botones específicos */
+        .btn-success { border-left: 4px solid #34c759; }
+        .btn-error { border-left: 4px solid #ff3b30; }
+        .btn-danger { border-left: 4px solid #ff3b30; }
+        .btn-warning { border-left: 4px solid #ffcc00; }
+        .btn-info { border-left: 4px solid #007aff; }
+        
+        .section-title {
+            margin-top: 40px;
+            margin-bottom: 15px;
+            font-size: 20px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 40px;
+            background: var(--card-bg);
+            padding: 15px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+        }
+
+        /* Toggle switch estilo iOS */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 30px;
+        }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #e5e5ea;
+            transition: .4s;
+            border-radius: 30px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        input:checked + .slider { background-color: #34c759; }
+        input:checked + .slider:before { transform: translateX(20px); }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>iOS Toast & Modals</h1>
+        <p class="subtitle">Notificaciones y modales con diseño nativo de Apple</p>
+
+        <div class="toggle-container">
+            <span>Modo Claro</span>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="slider"></span>
+            </label>
+            <span>Modo Oscuro</span>
+        </div>
+
+        <h2 class="section-title">Modales de Confirmación (NUEVO)</h2>
+        <div class="grid">
+            <button class="btn-danger" onclick="testDeleteModal()">
+                Delete File (Async/Await)
+            </button>
+            <button class="btn-success" onclick="testSuccessModal()">
+                Success Action Modal
+            </button>
+            <button class="btn-warning" onclick="testWarningModal()">
+                Warning Modal
+            </button>
+        </div>
+
+        <h2 class="section-title">Toasts (Notificaciones)</h2>
+        <div class="grid">
+            <button class="btn-success" onclick="iosToast('success', '¡Completado!', 'Tu perfil ha sido actualizado con éxito.')">
+                Success Toast
+            </button>
+            <button class="btn-error" onclick="iosToast('error', 'Error de conexión', 'No se pudo guardar la información. Intenta de nuevo.')">
+                Error Toast
+            </button>
+            <button class="btn-warning" onclick="iosToast('warning', 'Almacenamiento lleno', 'Te queda poco espacio en la nube.')">
+                Warning Toast
+            </button>
+            <button class="btn-info" onclick="iosToast('info', 'Nueva actualización', 'La versión 2.0 ya está disponible para descargar.')">
+                Info Toast
+            </button>
+        </div>
+
+        <h2 class="section-title">Duración Personalizada (Auto Close)</h2>
+        <div class="grid">
+            <button onclick="iosToast('info', 'Rápido', 'Este mensaje desaparecerá en 2 segundos', 2000)">
+                Cerrar en 2s
+            </button>
+            <button onclick="iosToast('success', 'Lento', 'Este mensaje desaparecerá en 8 segundos', 8000)">
+                Cerrar en 8s
+            </button>
+        </div>
+
+    </div>
+
+    <!-- Incluir JavaScript de iOS Toast -->
+    <script src="../toast-ios.js"></script>
+
+    <script>
+        // Lógica para el toggle de modo oscuro
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        
+        // Comprobar preferencia del sistema
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.body.classList.add('dark-theme');
+            darkModeToggle.checked = true;
+        }
+
+        darkModeToggle.addEventListener('change', (e) => {
+            if (e.target.checked) {
+                document.body.classList.add('dark-theme');
+            } else {
+                document.body.classList.remove('dark-theme');
+            }
+        });
+
+        // Test Async/Await Delete Modal
+        async function testDeleteModal() {
+            const result = await showConfirm({
+                title: "Eliminar archivo",
+                message: "¿Seguro que deseas eliminar 'documento.pdf'? Esta acción no se puede deshacer.",
+                confirmText: "Eliminar",
+                cancelText: "Cancelar",
+                type: "danger"
+            });
+
+            if (result.confirmed) {
+                iosToast('success', 'Eliminado', 'El archivo fue eliminado permanentemente.');
+            } else {
+                iosToast('info', 'Cancelado', 'La acción fue cancelada.');
+            }
+        }
+
+        // Test Success Modal with callbacks (Alternative to Async/Await)
+        function testSuccessModal() {
+            showConfirm({
+                title: "Actualización Exitosa",
+                message: "Tu sistema operativo ha sido actualizado a la versión más reciente. ¿Deseas reiniciar ahora?",
+                confirmText: "Reiniciar",
+                cancelText: "Más tarde",
+                type: "success",
+                onConfirm: () => iosToast('success', 'Reiniciando...', 'Cerrando aplicaciones.', 3000)
+            });
+        }
+
+        function testWarningModal() {
+            showConfirm({
+                title: "Batería Baja",
+                message: "Te queda 10% de batería. Conecta el cargador para evitar pérdida de datos.",
+                confirmText: "Entendido",
+                cancelText: "Omitir",
+                type: "warning"
+            }).then(({ confirmed }) => {
+                if(confirmed) console.log("Usuario notificó enterado");
+            });
+        }
+    </script>
+</body>
+</html>

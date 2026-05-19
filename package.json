@@ -1,0 +1,45 @@
+{
+  "name": "ios-toast",
+  "version": "1.0.0",
+  "description": "A lightweight, dependency-free iOS-style toast notification library for the web. Features glassmorphism and native feel.",
+  "main": "toast-ios.js",
+  "style": "toast-ios.css",
+  "types": "toast-ios.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oscarfor10/ios-toast.git"
+  },
+  "keywords": [
+    "toast",
+    "notification",
+    "alert",
+    "ios",
+    "apple",
+    "glassmorphism",
+    "vanilla-js",
+    "no-dependencies",
+    "ui",
+    "frontend",
+    "web"
+  ],
+  "author": "oscarfor10",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/oscarfor10/ios-toast/issues"
+  },
+  "homepage": "https://github.com/oscarfor10/ios-toast#readme",
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "exports": {
+    ".": {
+      "require": "./toast-ios.js",
+      "import": "./toast-ios.js",
+      "types": "./toast-ios.d.ts"
+    },
+    "./css": "./toast-ios.css"
+  }
+}

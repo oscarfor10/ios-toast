@@ -1,0 +1,8 @@
+examples/
+docs/
+.github/
+.gitignore
+*.log
+AI_USAGE.md
+CONTRIBUTING.md
+CODE_OF_CONDUCT.md
