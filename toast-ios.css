@@ -165,6 +165,8 @@
     .ios-toast:not(.light-theme).error .ios-toast-title { color: #f87171; }
     .ios-toast:not(.light-theme).warning .ios-toast-title { color: #facc15; }
     .ios-toast:not(.light-theme).info .ios-toast-title { color: #60a5fa; }
+}
+
 /* ─────────────────────────────────────────
    MODAL DE CONFIRMACIÓN (showConfirm)
 ───────────────────────────────────────── */
